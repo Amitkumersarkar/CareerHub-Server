@@ -28,6 +28,7 @@ async function run() {
         console.log("Pinged your deployment. You successfully connected to MongoDB!");
 
         const jobsCollections = client.db('careerHub').collection('jobs');
+        const applicationsCollection = client.db('careerHub').collection('job_applications');
 
         //  get all jobs
         app.get('/jobs', async (req, res) => {
@@ -42,6 +43,13 @@ async function run() {
             const result = await jobsCollections.findOne(query);
             res.send(result);
         });
+
+        // job applications apis
+        app.post('/job-applications', async (req, res) => {
+            const application = req.body;
+            const result = await applicationsCollection.insertOne(application);
+            res.send(result);
+        })
 
     } finally { }
 }
