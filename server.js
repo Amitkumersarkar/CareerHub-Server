@@ -54,7 +54,6 @@ async function run() {
 }
 run().catch(console.dir);
 
-// routes
 app.get('/', (req, res) => {
     res.send('the careerHub server is running');
 })
